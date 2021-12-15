@@ -1,0 +1,11 @@
+* {
+  background-color: #2e132c;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.header-logo {
+  width: 300px;
+}
