@@ -1,11 +1,113 @@
+@font-face {
+  font-family: "silkscreen";
+  src: url("../assets/fonts/slkscreb.ttf");
+}
+
 * {
   background-color: #2e132c;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   text-align: center;
+  color: white;
 }
 
-.header-logo {
+.app {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.welcome {
+  margin-top: 10%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.welcome-logo-container,
+.welcome-text-container {
+  width: 50%;
+}
+
+.welcome-logo {
   width: 300px;
+}
+
+.welcome-text {
+  font-family: "silkscreen";
+}
+
+.feed-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.username {
+  font-family: "silkscreen";
+  color: greenyellow;
+}
+
+.tab-selector {
+  width: 450px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tab-selector div {
+  background-color: #150714;
+  color: #60265b;
+  width: 50%;
+  height: 35px;
+  font-family: "silkscreen";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-selector div.active {
+  background-color: #60265b;
+  color: #150714;
+}
+
+.tweets-container {
+  width: 450px;
+}
+
+.tweet {
+  width: 100%;
+  display: flex;
+}
+
+.tweet-avatar {
+  width: 20%;
+}
+
+.tweet-body {
+  width: 80%;
+}
+
+.tweet-header {
+  display: flex;
+  align-items: center;
+}
+
+.tweet-header span,
+.tweet-header h4 {
+  margin-left: 10px;
+}
+
+.tweet-text {
+  display: flex;
+  text-align: justify;
+}
+
+.tweet-likes {
+  display: flex;
+  font-weight: 600;
+  color: red;
 }

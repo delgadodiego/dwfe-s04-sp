@@ -1,10 +1,18 @@
-import React from "react";
-
 export const Tweet = (props) => {
   return (
-    <div>
-      <h2>{props.data.user}</h2>
-      <h4>{props.data.text}</h4>
+    <div className="tweet">
+      <div className="tweet-avatar">
+        <h1>{props.data.avatar}</h1>
+      </div>
+      <div className="tweet-body">
+        <div className="tweet-header">
+          <h3>{props.data.user}</h3>
+          <span>-</span>
+          <h4>{props.data.time}</h4>
+        </div>
+        <div className="tweet-text">{props.data.text}</div>
+        <div className="tweet-likes">{props.data.likes}</div>
+      </div>
     </div>
   );
 };

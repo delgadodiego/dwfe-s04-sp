@@ -1,11 +1,11 @@
-import React, { createContext, useState } from "react";
+import { createContext, useState } from "react";
 
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [tweets, setTweets] = useState([]);
   const [userData, setUserData] = useState({});
-  const [userID, setUserID] = useState("");
+  const [userID, setUserID] = useState("USERNAME");
 
   return (
     <AppContext.Provider
