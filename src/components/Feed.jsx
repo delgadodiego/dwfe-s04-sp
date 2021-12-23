@@ -1,4 +1,5 @@
 import { Tweet } from "./Tweet";
+import { SubmitForm } from "./SubmitForm";
 import { useTweets } from "../hooks/useTweets";
 import { useContext, useState } from "react";
 import { AppContext } from "../context/ContextProvider";
@@ -17,6 +18,7 @@ export const Feed = () => {
 
   return (
     <div className="feed-container">
+      <SubmitForm />
       <h1 className="username">{userID}</h1>
       <div className="tab-selector">
         <div className={`${postsView && "active"}`} onClick={handlePostsClick}>
