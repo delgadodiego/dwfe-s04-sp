@@ -1,6 +1,6 @@
 import { Tweet } from "./Tweet";
 import { SubmitForm } from "./SubmitForm";
-import { useTweets } from "../hooks/useTweets";
+import { useTweets } from "../hooks/tweetsHooks";
 import { useContext, useState } from "react";
 import { AppContext } from "../context/ContextProvider";
 
@@ -36,7 +36,7 @@ export const Feed = () => {
         {postsView &&
           tweets !== undefined &&
           tweets.map((item) => {
-            return <Tweet key={Math.random()} data={item} />;
+            return <Tweet key={item.user} data={item} />;
           })}
         {!postsView && <h2>FAVOURITES</h2>}
       </div>

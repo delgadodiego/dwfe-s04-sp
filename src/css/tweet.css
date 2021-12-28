@@ -1,0 +1,56 @@
+.tweets-container {
+  width: 450px;
+}
+
+.tweet {
+  width: 100%;
+  padding: 10px 5px 10px 5px;
+  display: flex;
+  border-bottom: 3px solid #60265b;
+}
+
+.tweet-avatar {
+  width: 20%;
+}
+
+.tweet-body {
+  width: 80%;
+}
+
+.tweet-header {
+  display: flex;
+  justify-content: space-between;
+}
+.tweet-header-text {
+  display: flex;
+  align-items: center;
+}
+.trashcan {
+  width: 13px;
+}
+
+.tweet-header span,
+.tweet-header h4 {
+  margin-left: 10px;
+}
+
+.tweet-text {
+  display: flex;
+  text-align: justify;
+  word-break: break-all;
+}
+
+.tweet-likes {
+  display: flex;
+  font-weight: 600;
+  color: red;
+}
+
+.tweet-bottom {
+  display: flex;
+  align-items: center;
+}
+
+.heart {
+  margin: 10px 10px 10px 0px;
+}

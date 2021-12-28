@@ -1,10 +1,20 @@
 import React from "react";
 import { useState } from "react";
+import { useContext } from "react/cjs/react.development";
+import { AppContext } from "../context/ContextProvider";
 import { CONFIGS } from "../utils/configs";
+import { postData } from "../services/operations";
+import "../css/forms.css";
 
 export const SubmitForm = () => {
-  const [availableToPost, setAvailableToPost] = useState(false);
-  const [tweetText, setTweetText] = useState("");
+  const {
+    availableToPost,
+    setAvailableToPost,
+    tweetText,
+    setTweetText,
+    userID,
+  } = useContext(AppContext);
+
   const [availableLength, setAvailableLength] = useState(CONFIGS.maxLength);
   const percent = 100 - (availableLength * 100) / CONFIGS.maxLength;
 
@@ -29,8 +39,16 @@ export const SubmitForm = () => {
   const handlePost = (e) => {
     e.preventDefault();
     if (availableToPost) {
+      const tweetToPost = {
+        user: userID,
+        text: tweetText,
+        likes: 0,
+        time: new Date(),
+        prueba: "dos",
+      };
+
+      postData(CONFIGS.collection, tweetToPost);
       reset(e);
-      // addDoc
     }
   };
 
@@ -54,7 +72,6 @@ export const SubmitForm = () => {
           onFocus={handleFocus}
           onBlur={handleBlur}
           placeholder={CONFIGS.inputPlaceholder}
-          value={tweetText}
           maxLength={CONFIGS.maxLength}
         />
         <progress id="progress-bar" max="100" value={percent}></progress>

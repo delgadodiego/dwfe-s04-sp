@@ -1,5 +1,12 @@
 import { database } from "./firebase";
-import { addDoc, collection, onSnapshot } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  query,
+  where,
+  onSnapshot,
+  getDocs,
+} from "firebase/firestore";
 
 export const subscribe = (col, callback) => {
   try {
@@ -10,11 +17,24 @@ export const subscribe = (col, callback) => {
   }
 };
 
-export const postData = (col, data) => {
+export const postData = async (col, data) => {
   try {
-    const docReference = addDoc((collection(database, col), data));
-    console.info("docReference", docReference.user);
+    const docReference = await addDoc(collection(database, col), data);
+    console.info("docReferenceID", docReference.id);
   } catch (e) {
     console.error("Exception at postData:", e);
+  }
+};
+
+export const getDocument = async (col, user) => {
+  try {
+    const collectionRef = collection(database, "tweets");
+    const q = query(collectionRef, where("user", "==", "User 1"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      console.info("Doc", doc.data());
+    });
+  } catch (e) {
+    console.error("Exception at getDocument", e);
   }
 };

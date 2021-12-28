@@ -1,0 +1,73 @@
+/* SUBMIT FORM */
+.tweet-form {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+progress {
+  width: 500px;
+  height: 5px;
+  border: 1px solid #150714;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+}
+
+progress::-moz-progress-bar {
+  background-color: greenyellow;
+}
+
+progress::-webkit-progress-value {
+  background-color: greenyellow;
+}
+
+.submit-form-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.form-buttons {
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#input-area {
+  text-align: left;
+  font-family: "Fira Code";
+  font-weight: 500;
+  width: 500px;
+  height: 113px;
+  display: flex;
+  margin-bottom: -14px;
+  border: 1px solid #150714;
+  resize: none;
+}
+
+input:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+#reset-button,
+#post-button {
+  font-family: "silkscreen";
+  background-color: #60265b;
+  border: 0px;
+  padding: 3px;
+}
+
+#post-button:disabled {
+  background-color: #2f112d;
+  color: #9e929d;
+}
+
+#post-button:enabled {
+  background-color: greenyellow;
+  color: #150714;
+}
