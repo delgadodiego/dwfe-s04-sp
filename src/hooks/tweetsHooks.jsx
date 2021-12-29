@@ -11,7 +11,12 @@ export const useTweets = () => {
     const onSubscribe = subscribe(CONFIGS.collection, async (snapshot) => {
       setTweets(
         snapshot.docs.map((item) => {
-          return { ...item.data(), time: timestampFormatter(item.data().time) };
+          console.info("item", item._document.key.path.segments[6]);
+          return {
+            ...item.data(),
+            time: timestampFormatter(item.data().time),
+            id: item._document.key.path.segments[6],
+          };
         })
       );
     });

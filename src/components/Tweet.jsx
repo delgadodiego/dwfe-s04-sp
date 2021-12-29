@@ -13,6 +13,10 @@ const dislike = (e) => {
   console.info("Dislike", e);
 };
 
+const handleDelete = () => {
+  console.info("Se eliminaría este Tweet...");
+};
+
 export const Tweet = (props) => {
   return (
     <div className="tweet">
@@ -26,7 +30,12 @@ export const Tweet = (props) => {
             <span>-</span>
             <h4>{props.data.time}</h4>
           </div>
-          <img className="trashcan" src={trashcan} alt="trashcan" />
+          <img
+            className="trashcan"
+            src={trashcan}
+            alt="trashcan"
+            onClick={handleDelete}
+          />
         </div>
         <div className="tweet-text">{props.data.text}</div>
         <div className="tweet-bottom">
@@ -35,14 +44,18 @@ export const Tweet = (props) => {
               className="heart"
               src={heartempty}
               alt="heartempty"
-              onClick={like}
+              onClick={() => {
+                like(props.data.user);
+              }}
             />
           ) : (
             <img
               className="heart"
               src={heartfull}
               alt="heartfull"
-              onClick={dislike}
+              onClick={() => {
+                dislike(props.data.user);
+              }}
             />
           )}
           <div className="tweet-likes">{props.data.likes}</div>
