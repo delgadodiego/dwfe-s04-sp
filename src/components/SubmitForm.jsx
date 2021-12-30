@@ -1,10 +1,9 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useContext } from "react/cjs/react.development";
 import { AppContext } from "../context/ContextProvider";
-import { CONFIGS } from "../utils/configs";
-import { postData } from "../services/operations";
 import "../css/forms.css";
+import { postTweet } from "../services/operations";
+import { CONFIGS } from "../utils/configs";
 
 export const SubmitForm = () => {
   const {
@@ -44,10 +43,9 @@ export const SubmitForm = () => {
         text: tweetText,
         likes: 0,
         time: new Date(),
-        prueba: "dos",
       };
 
-      postData(CONFIGS.collection, tweetToPost);
+      postTweet(CONFIGS.collection, tweetToPost);
       reset(e);
     }
   };
@@ -73,6 +71,7 @@ export const SubmitForm = () => {
           onBlur={handleBlur}
           placeholder={CONFIGS.inputPlaceholder}
           maxLength={CONFIGS.maxLength}
+          value={tweetText}
         />
         <progress id="progress-bar" max="100" value={percent}></progress>
         <div className="submit-form-bottom">

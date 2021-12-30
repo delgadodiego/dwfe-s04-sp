@@ -1,6 +1,9 @@
 import { database } from "./firebase";
 import {
   addDoc,
+  setDoc,
+  doc,
+  deleteDoc,
   collection,
   query,
   where,
@@ -17,16 +20,28 @@ export const subscribe = (col, callback) => {
   }
 };
 
-export const postData = async (col, data) => {
+export const postTweet = async (col, data) => {
   try {
     const docReference = await addDoc(collection(database, col), data);
-    console.info("docReferenceID", docReference.id);
+
+    await setDoc(doc(collection(database, col), docReference.id), {
+      ...data,
+      id: docReference.id,
+    });
   } catch (e) {
     console.error("Exception at postData:", e);
   }
 };
 
-export const getDocument = async (col, user) => {
+export const deleteTweet = async (col, data) => {
+  try {
+    await deleteDoc(doc(database, col, data));
+  } catch (e) {
+    console.error("Exception at deleteTweet", e);
+  }
+};
+
+export const getTweets = async (col, user) => {
   try {
     const collectionRef = collection(database, "tweets");
     const q = query(collectionRef, where("user", "==", "User 1"));
@@ -35,6 +50,6 @@ export const getDocument = async (col, user) => {
       console.info("Doc", doc.data());
     });
   } catch (e) {
-    console.error("Exception at getDocument", e);
+    console.error("Exception at getTweets", e);
   }
 };

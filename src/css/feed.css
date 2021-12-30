@@ -1,0 +1,73 @@
+.feed-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.username {
+  font-family: "silkscreen";
+  color: greenyellow;
+}
+
+.tab-selector {
+  width: 450px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tab-selector div {
+  background-color: #150714;
+  color: #60265b;
+  width: 50%;
+  height: 35px;
+  font-family: "silkscreen";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-selector div.active {
+  background-color: #60265b;
+  color: #150714;
+}
+
+.popup-container {
+  display: flex;
+  justify-content: center;
+}
+
+.popup-bg {
+  position: fixed;
+  background: #150714;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  opacity: 85%;
+}
+
+.popup-message {
+  margin: 300px;
+  position: absolute;
+  z-index: 3;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.popup-message h2 {
+  color: greenyellow;
+  background-color: transparent;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.popup-buttons button {
+  width: 100px;
+}

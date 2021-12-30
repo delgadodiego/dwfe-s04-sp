@@ -40,37 +40,3 @@
 .welcome-text {
   font-family: "silkscreen";
 }
-
-.feed-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.username {
-  font-family: "silkscreen";
-  color: greenyellow;
-}
-
-.tab-selector {
-  width: 450px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.tab-selector div {
-  background-color: #150714;
-  color: #60265b;
-  width: 50%;
-  height: 35px;
-  font-family: "silkscreen";
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.tab-selector div.active {
-  background-color: #60265b;
-  color: #150714;
-}

@@ -8,6 +8,10 @@ export const AppProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
   const [userID, setUserID] = useState("USERNAME");
   const [availableToPost, setAvailableToPost] = useState(false);
+  const [okToDelete, setOkToDelete] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [tweetToDelete, setTweetToDelete] = useState(undefined);
+  const [deletePressed, setDeletePressed] = useState(false);
 
   return (
     <AppContext.Provider
@@ -22,6 +26,14 @@ export const AppProvider = ({ children }) => {
         setUserID,
         availableToPost,
         setAvailableToPost,
+        okToDelete,
+        setOkToDelete,
+        showDeleteConfirm,
+        setShowDeleteConfirm,
+        tweetToDelete,
+        setTweetToDelete,
+        deletePressed,
+        setDeletePressed,
       }}
     >
       {children}
