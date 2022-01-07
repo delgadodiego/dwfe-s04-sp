@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { AppContext } from "../context/ContextProvider";
+import { appContext } from "../context/AppContext";
 import "../css/feed.css";
 import { useDeleteTweet, useSubscribeTweets } from "../hooks/tweetsHooks";
 import { SubmitForm } from "./SubmitForm";
@@ -14,7 +14,7 @@ export const Feed = () => {
     setShowDeleteConfirm,
     deletePressed,
     setDeletePressed,
-  } = useContext(AppContext);
+  } = useContext(appContext);
   const [postsView, setPostsView] = useState(true);
   useSubscribeTweets();
   useDeleteTweet();

@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { useContext } from "react/cjs/react.development";
-import { AppContext } from "../context/ContextProvider";
+import React, { useState, useContext } from "react";
+import { appContext } from "../context/AppContext";
 import "../css/forms.css";
 import { postTweet } from "../services/operations";
 import { CONFIGS } from "../utils/configs";
@@ -12,7 +11,7 @@ export const SubmitForm = () => {
     tweetText,
     setTweetText,
     userID,
-  } = useContext(AppContext);
+  } = useContext(appContext);
 
   const [availableLength, setAvailableLength] = useState(CONFIGS.maxLength);
   const percent = 100 - (availableLength * 100) / CONFIGS.maxLength;
@@ -45,7 +44,7 @@ export const SubmitForm = () => {
         time: new Date(),
       };
 
-      postTweet(CONFIGS.collection, tweetToPost);
+      postTweet(CONFIGS.collectionTweets, tweetToPost);
       reset(e);
     }
   };

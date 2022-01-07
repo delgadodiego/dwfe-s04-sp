@@ -1,14 +1,14 @@
-import { useContext } from "react/cjs/react.development";
+import { useContext } from "react";
 import avatar01 from "../assets/avatars/01.svg";
 import heartempty from "../assets/img/heart-empty.svg";
 import heartfull from "../assets/img/heart-full.svg";
 import trashcan from "../assets/img/trashcan.svg";
-import { AppContext } from "../context/ContextProvider";
+import { appContext } from "../context/AppContext";
 import "../css/tweet.css";
 
 export const Tweet = (props) => {
   const { setShowDeleteConfirm, setTweetToDelete, setDeletePressed } =
-    useContext(AppContext);
+    useContext(appContext);
 
   const like = (user, id) => {
     console.info("Like", user, id);

@@ -1,5 +1,6 @@
 export const CONFIGS = {
-  collection: "tweets",
+  collectionTweets: "tweets",
+  collectionUsers: "users",
   maxLength: 200,
   inputPlaceholder: "What's happening?",
 };

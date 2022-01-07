@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-export const AppContext = createContext();
+export const appContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [tweets, setTweets] = useState([]);
@@ -14,7 +14,7 @@ export const AppProvider = ({ children }) => {
   const [deletePressed, setDeletePressed] = useState(false);
 
   return (
-    <AppContext.Provider
+    <appContext.Provider
       value={{
         tweets,
         setTweets,
@@ -37,6 +37,6 @@ export const AppProvider = ({ children }) => {
       }}
     >
       {children}
-    </AppContext.Provider>
+    </appContext.Provider>
   );
 };
