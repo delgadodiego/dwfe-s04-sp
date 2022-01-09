@@ -4,14 +4,17 @@ import {
   signInWithPopup,
   signOut as _signOut,
 } from "firebase/auth";
-import { setDoc } from "firebase/firestore";
-import { auth } from "./firebase";
+import { setDoc, doc, collection } from "firebase/firestore";
+import { auth, database } from "./firebase";
+import { CONFIGS } from "../utils/configs";
+import { getDocByID } from "./operations";
 
 const provider = new GoogleAuthProvider();
 
 export const signIn = async () => {
   try {
     const credentials = await signInWithPopup(auth, provider);
+    await addUserToFirestore(credentials.user);
     return credentials;
   } catch (e) {
     console.error("Exception at signIn", e.message);
@@ -33,16 +36,18 @@ export const handleAuthChange = (callback) => {
 
 export const addUserToFirestore = async (user) => {
   // incluir en UserContext
+  const { uid, displayName, email } = user;
 
-  const { id, displayName, avatar, email } = user;
-  /* const userExists = await getDataByID("usersCollection", id);
+  const userExists = await getDocByID(CONFIGS.collectionUsers, uid);
+
   if (!userExists) {
-    await setDocument("usersCollection", id, {
+    await setDoc(doc(collection(database, CONFIGS.collectionUsers), uid), {
       name: displayName,
       email: email,
-      avatar: avatar,
+      likedTweets: "||",
     });
-  } */
+  }
+
   try {
   } catch (e) {
     console.error("Exception at addUserToFirestore", e);

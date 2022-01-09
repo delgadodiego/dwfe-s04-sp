@@ -1,6 +1,7 @@
-import { subscribe, deleteTweet } from "../services/operations";
+import { subscribe, deleteTweet, updateTweet } from "../services/operations";
 import { useContext, useEffect } from "react";
 import { appContext } from "../context/AppContext";
+import { userContext } from "../context/UserContext";
 import { CONFIGS } from "../utils/configs";
 import { timestampFormatter } from "../utils/utils";
 
@@ -13,10 +14,10 @@ export const useSubscribeTweets = () => {
       async (snapshot) => {
         setTweets(
           snapshot.docs.map((item) => {
+            console.log("item ID", item._document.key.path.segments[6]);
             return {
               ...item.data(),
               time: timestampFormatter(item.data().time),
-              id: item._document.key.path.segments[6],
             };
           })
         );
@@ -38,6 +39,17 @@ export const useDeleteTweet = () => {
       setOkToDelete(false);
       setShowDeleteConfirm(false);
       deleteTweet(CONFIGS.collectionTweets, tweetToDelete);
+    }
+  });
+};
+
+export const useLikeTweet = () => {
+  const { tweet, like, setLikedTweet } = useContext(appContext);
+  const user = useContext(userContext);
+  useEffect(() => {
+    if (tweet) {
+      updateTweet(CONFIGS.collectionUsers, user.uid, tweet, like);
+      setLikedTweet([undefined, null]);
     }
   });
 };

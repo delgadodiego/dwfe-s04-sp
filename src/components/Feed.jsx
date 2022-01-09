@@ -1,14 +1,17 @@
 import { useContext, useState } from "react";
 import { appContext } from "../context/AppContext";
 import "../css/feed.css";
-import { useDeleteTweet, useSubscribeTweets } from "../hooks/tweetsHooks";
+import {
+  useDeleteTweet,
+  useSubscribeTweets,
+  useLikeTweet,
+} from "../hooks/tweetsHooks";
 import { SubmitForm } from "./SubmitForm";
 import { Tweet } from "./Tweet";
 
 export const Feed = () => {
   const {
     tweets,
-    userID,
     setOkToDelete,
     showDeleteConfirm,
     setShowDeleteConfirm,
@@ -18,6 +21,7 @@ export const Feed = () => {
   const [postsView, setPostsView] = useState(true);
   useSubscribeTweets();
   useDeleteTweet();
+  useLikeTweet();
 
   document.addEventListener("keydown", getKey);
   function getKey(e) {
@@ -65,7 +69,7 @@ export const Feed = () => {
       {showDeleteConfirm && <ConfirmDeletion />}
       <div className="feed-container">
         <SubmitForm />
-        <h1 className="username">{userID}</h1>
+        <h1 className="username">{"CAMBIAR ESTO"}</h1>
         <div className="tab-selector">
           <div
             className={`${postsView && "active"}`}

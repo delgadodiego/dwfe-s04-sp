@@ -1,17 +1,15 @@
 import React, { useState, useContext } from "react";
 import { appContext } from "../context/AppContext";
+import { userContext } from "../context/UserContext";
 import "../css/forms.css";
 import { postTweet } from "../services/operations";
 import { CONFIGS } from "../utils/configs";
 
 export const SubmitForm = () => {
-  const {
-    availableToPost,
-    setAvailableToPost,
-    tweetText,
-    setTweetText,
-    userID,
-  } = useContext(appContext);
+  const { availableToPost, setAvailableToPost, tweetText, setTweetText } =
+    useContext(appContext);
+
+  const user = useContext(userContext);
 
   const [availableLength, setAvailableLength] = useState(CONFIGS.maxLength);
   const percent = 100 - (availableLength * 100) / CONFIGS.maxLength;
@@ -38,7 +36,8 @@ export const SubmitForm = () => {
     e.preventDefault();
     if (availableToPost) {
       const tweetToPost = {
-        user: userID,
+        uid: user.uid,
+        name: user.displayName,
         text: tweetText,
         likes: 0,
         time: new Date(),

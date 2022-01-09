@@ -1,6 +1,7 @@
 import { database } from "./firebase";
 import {
   addDoc,
+  setDoc,
   doc,
   deleteDoc,
   collection,
@@ -8,6 +9,7 @@ import {
   where,
   onSnapshot,
   getDocs,
+  getDoc,
 } from "firebase/firestore";
 
 export const subscribe = (col, callback) => {
@@ -21,7 +23,11 @@ export const subscribe = (col, callback) => {
 
 export const postTweet = async (col, data) => {
   try {
-    await addDoc(collection(database, col), data);
+    const docReference = await addDoc(collection(database, col), data);
+    await setDoc(doc(collection(database, col), docReference.id), {
+      ...data,
+      id: docReference.id,
+    });
   } catch (e) {
     console.error("Exception at postTweet:", e);
   }
@@ -48,4 +54,20 @@ export const getTweets = async (col, user) => {
   }
 };
 
-//export const getDataByID
+export const getDocByID = async (col, id) => {
+  const docRef = doc(database, col, id);
+  const docByID = await getDoc(docRef);
+  const data = docByID.data();
+  return data;
+};
+
+export const updateTweet = async (col, user, tweet, like) => {
+  const userRef = await getDocByID(col, user);
+
+  await setDoc(doc(collection(database, col), user), {
+    ...userRef,
+    likedTweets: tweet,
+  });
+
+  console.info("USER", userRef);
+};

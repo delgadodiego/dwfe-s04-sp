@@ -4,18 +4,26 @@ import heartempty from "../assets/img/heart-empty.svg";
 import heartfull from "../assets/img/heart-full.svg";
 import trashcan from "../assets/img/trashcan.svg";
 import { appContext } from "../context/AppContext";
+import { userContext } from "../context/UserContext";
 import "../css/tweet.css";
 
 export const Tweet = (props) => {
-  const { setShowDeleteConfirm, setTweetToDelete, setDeletePressed } =
-    useContext(appContext);
+  const {
+    setShowDeleteConfirm,
+    setTweetToDelete,
+    setDeletePressed,
+    setLikedTweet,
+  } = useContext(appContext);
+  const user = useContext(userContext);
 
-  const like = (user, id) => {
+  const handleLike = (user, id) => {
     console.info("Like", user, id);
+    setLikedTweet([id, true]);
   };
 
-  const dislike = (user, id) => {
+  const handleDislike = (user, id) => {
     console.info("Dislike", user, id);
+    setLikedTweet([id, false]);
   };
 
   const handleDelete = (id) => {
@@ -32,16 +40,18 @@ export const Tweet = (props) => {
       <div className="tweet-body">
         <div className="tweet-header">
           <div className="tweet-header-text">
-            <h3>{props.data.user}</h3>
+            <h3>{props.data.name}</h3>
             <span>-</span>
             <h4>{props.data.time}</h4>
           </div>
-          <img
-            className="trashcan"
-            src={trashcan}
-            alt="trashcan"
-            onClick={() => handleDelete(props.data.id)}
-          />
+          {user.uid === props.data.uid && (
+            <img
+              className="trashcan"
+              src={trashcan}
+              alt="trashcan"
+              onClick={() => handleDelete(props.data.id)}
+            />
+          )}
         </div>
         <div className="tweet-text">{props.data.text}</div>
         <div className="tweet-bottom">
@@ -51,7 +61,7 @@ export const Tweet = (props) => {
               src={heartempty}
               alt="heartempty"
               onClick={() => {
-                like(props.data.user, props.data.id);
+                handleLike(user.uid, props.data.id);
               }}
             />
           ) : (
@@ -60,7 +70,7 @@ export const Tweet = (props) => {
               src={heartfull}
               alt="heartfull"
               onClick={() => {
-                dislike(props.data.user, props.data.id);
+                handleDislike(user.uid, props.data.id);
               }}
             />
           )}
