@@ -1,7 +1,8 @@
-import logo from "../assets/img/logo-big.svg";
 import google from "../assets/img/cmd_google.svg";
-import { signIn } from "../services/auth";
+import logo from "../assets/img/logo-big.svg";
 import "../css/app.css";
+import { signIn } from "../services/auth";
+import { CONFIGS } from "../utils/configs";
 
 export function Unlogged() {
   return (
@@ -11,10 +12,8 @@ export function Unlogged() {
           <img src={logo} alt="" className="welcome-logo" />
         </div>
         <div className="welcome-text-container">
-          <h1 className="welcome-title">WELCOME !</h1>
-          <h4 className="welcome-text">
-            the place to share all your nerd stuff
-          </h4>
+          <h1 className="welcome-title">{CONFIGS.welcomeTitle}</h1>
+          <h4 className="welcome-text">{CONFIGS.welcomeText}</h4>
           <img
             onClick={signIn}
             className="google-login"
@@ -23,7 +22,7 @@ export function Unlogged() {
             alt=""
           />
           <h3 className="copyright">
-            © 2022 Devs_United -<span className="highlighted">BETA</span>
+            {CONFIGS.copyright} -<span className="highlighted">BETA</span>
           </h3>
         </div>
       </div>

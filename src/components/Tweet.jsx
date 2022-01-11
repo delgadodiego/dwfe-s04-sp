@@ -14,15 +14,13 @@ export const Tweet = (props) => {
     setDeletePressed,
     setLikedTweet,
   } = useContext(appContext);
-  const user = useContext(userContext);
+  const { user } = useContext(userContext);
 
   const handleLike = (user, id) => {
-    console.info("Like", user, id);
     setLikedTweet([id, true]);
   };
 
   const handleDislike = (user, id) => {
-    console.info("Dislike", user, id);
     setLikedTweet([id, false]);
   };
 
@@ -55,7 +53,7 @@ export const Tweet = (props) => {
         </div>
         <div className="tweet-text">{props.data.text}</div>
         <div className="tweet-bottom">
-          {props.data.likes === 0 || props.data.likes === undefined ? (
+          {!props.data.liked ? (
             <img
               className="heart"
               src={heartempty}

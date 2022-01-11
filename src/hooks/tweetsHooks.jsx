@@ -1,33 +1,41 @@
-import { subscribe, deleteTweet, updateTweet } from "../services/operations";
 import { useContext, useEffect } from "react";
 import { appContext } from "../context/AppContext";
 import { userContext } from "../context/UserContext";
+import {
+  deleteTweet,
+  subscribe,
+  updateTweetStats,
+  updateUserLikedTweets,
+} from "../services/operations";
 import { CONFIGS } from "../utils/configs";
 import { timestampFormatter } from "../utils/utils";
 
 export const useSubscribeTweets = () => {
   const { setTweets } = useContext(appContext);
+  const { user } = useContext(userContext);
 
   useEffect(() => {
-    const onSubscribe = subscribe(
-      CONFIGS.collectionTweets,
-      async (snapshot) => {
-        setTweets(
-          snapshot.docs.map((item) => {
-            console.log("item ID", item._document.key.path.segments[6]);
-            return {
-              ...item.data(),
-              time: timestampFormatter(item.data().time),
-            };
-          })
-        );
-      }
-    );
+    if (user !== null) {
+      const onSubscribe = subscribe(
+        CONFIGS.collectionTweets,
+        async (snapshot) => {
+          setTweets(
+            snapshot.docs.map((item) => {
+              return {
+                ...item.data(),
+                time: timestampFormatter(item.data().time),
+                liked: user.likedTweets.indexOf(item.data().id) > 0,
+              };
+            })
+          );
+        }
+      );
 
-    return () => {
-      onSubscribe();
-    };
-  }, [setTweets]);
+      return () => {
+        onSubscribe();
+      };
+    }
+  }, [setTweets, user]);
 };
 
 export const useDeleteTweet = () => {
@@ -44,12 +52,25 @@ export const useDeleteTweet = () => {
 };
 
 export const useLikeTweet = () => {
-  const { tweet, like, setLikedTweet } = useContext(appContext);
-  const user = useContext(userContext);
+  const { currentTweet, like, setLikedTweet } = useContext(appContext);
+  const { user, setUser } = useContext(userContext);
+
   useEffect(() => {
-    if (tweet) {
-      updateTweet(CONFIGS.collectionUsers, user.uid, tweet, like);
+    if (currentTweet) {
+      const newLikedTweets = updateUserLikedTweets(
+        CONFIGS.collectionUsers,
+        user.uid,
+        currentTweet,
+        like
+      );
       setLikedTweet([undefined, null]);
+      updateUser(user, setUser, newLikedTweets);
+
+      updateTweetStats(CONFIGS.collectionTweets, currentTweet, like);
     }
   });
+};
+
+const updateUser = async (user, setUser, newLikedTweets) => {
+  await setUser({ ...user, likedTweets: await newLikedTweets });
 };

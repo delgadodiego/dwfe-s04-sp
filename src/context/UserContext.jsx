@@ -1,24 +1,28 @@
-import { createContext, useState, useEffect } from "react";
-import { handleAuthChange } from "../services/auth";
-import { Navigate } from "react-router-dom";
+import { createContext, useEffect, useState } from "react";
+import { addUserToFirestore, handleAuthChange } from "../services/auth";
 
 export const userContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [section, setSection] = useState("login");
+  const [section, setSection] = useState("welcome");
 
   useEffect(() => {
-    const unsubscribe = handleAuthChange((user) => {
+    const unsubscribe = handleAuthChange(async (user) => {
       if (user) {
         setUser(user);
+        const contextUser = await addUserToFirestore(user);
+        setUser(contextUser);
       } else {
         setUser(null);
       }
       return () => unsubscribe();
     });
-  }, [section, setSection]);
+  }, []);
 
-  return <userContext.Provider value={user}>{children}</userContext.Provider>;
-  // debería pasarse el resto del perfil del usuario (Google+Firebase)
+  return (
+    <userContext.Provider value={{ user, setUser }}>
+      {children}
+    </userContext.Provider>
+  );
 };

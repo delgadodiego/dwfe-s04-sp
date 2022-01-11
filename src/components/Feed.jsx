@@ -3,8 +3,8 @@ import { appContext } from "../context/AppContext";
 import "../css/feed.css";
 import {
   useDeleteTweet,
-  useSubscribeTweets,
   useLikeTweet,
+  useSubscribeTweets,
 } from "../hooks/tweetsHooks";
 import { SubmitForm } from "./SubmitForm";
 import { Tweet } from "./Tweet";
@@ -19,6 +19,7 @@ export const Feed = () => {
     setDeletePressed,
   } = useContext(appContext);
   const [postsView, setPostsView] = useState(true);
+
   useSubscribeTweets();
   useDeleteTweet();
   useLikeTweet();

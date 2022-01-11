@@ -1,16 +1,16 @@
-import { database } from "./firebase";
 import {
   addDoc,
-  setDoc,
-  doc,
-  deleteDoc,
   collection,
-  query,
-  where,
-  onSnapshot,
-  getDocs,
+  deleteDoc,
+  doc,
   getDoc,
+  getDocs,
+  onSnapshot,
+  query,
+  setDoc,
+  where,
 } from "firebase/firestore";
+import { database } from "./firebase";
 
 export const subscribe = (col, callback) => {
   try {
@@ -61,13 +61,38 @@ export const getDocByID = async (col, id) => {
   return data;
 };
 
-export const updateTweet = async (col, user, tweet, like) => {
+export const updateUserLikedTweets = async (col, user, tweet, like) => {
   const userRef = await getDocByID(col, user);
+  let newLikedTweets = undefined;
+  if (like) {
+    newLikedTweets = userRef.likedTweets + tweet + "||";
+  } else {
+    newLikedTweets = userRef.likedTweets.replace(tweet + "||", "");
+  }
 
   await setDoc(doc(collection(database, col), user), {
     ...userRef,
-    likedTweets: tweet,
+    likedTweets: newLikedTweets,
   });
 
-  console.info("USER", userRef);
+  return await newLikedTweets;
+};
+
+export const updateTweetStats = async (col, tweet, like) => {
+  const tweetRef = await getDocByID(col, tweet);
+
+  let newLikes = undefined;
+  if (like) {
+    newLikes = tweetRef.likes + 1;
+  } else {
+    newLikes = tweetRef.likes - 1;
+    if (newLikes < 0) {
+      newLikes = 0;
+    }
+  }
+
+  await setDoc(doc(collection(database, col), tweet), {
+    ...tweetRef,
+    likes: newLikes,
+  });
 };

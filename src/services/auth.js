@@ -4,9 +4,9 @@ import {
   signInWithPopup,
   signOut as _signOut,
 } from "firebase/auth";
-import { setDoc, doc, collection } from "firebase/firestore";
-import { auth, database } from "./firebase";
+import { collection, doc, setDoc } from "firebase/firestore";
 import { CONFIGS } from "../utils/configs";
+import { auth, database } from "./firebase";
 import { getDocByID } from "./operations";
 
 const provider = new GoogleAuthProvider();
@@ -14,7 +14,6 @@ const provider = new GoogleAuthProvider();
 export const signIn = async () => {
   try {
     const credentials = await signInWithPopup(auth, provider);
-    await addUserToFirestore(credentials.user);
     return credentials;
   } catch (e) {
     console.error("Exception at signIn", e.message);
@@ -29,7 +28,7 @@ export const signOut = () => {
   }
 };
 
-export const handleAuthChange = (callback) => {
+export const handleAuthChange = async (callback) => {
   const unsubscribe = onAuthStateChanged(auth, callback);
   return unsubscribe;
 };
@@ -39,16 +38,17 @@ export const addUserToFirestore = async (user) => {
   const { uid, displayName, email } = user;
 
   const userExists = await getDocByID(CONFIGS.collectionUsers, uid);
-
-  if (!userExists) {
-    await setDoc(doc(collection(database, CONFIGS.collectionUsers), uid), {
-      name: displayName,
-      email: email,
-      likedTweets: "||",
-    });
-  }
-
   try {
+    if (!userExists) {
+      await setDoc(doc(collection(database, CONFIGS.collectionUsers), uid), {
+        name: displayName,
+        email: email,
+        likedTweets: "||",
+        uid: uid,
+      });
+    }
+
+    return userExists;
   } catch (e) {
     console.error("Exception at addUserToFirestore", e);
   }
