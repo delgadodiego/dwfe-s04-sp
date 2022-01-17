@@ -1,10 +1,20 @@
+import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import google from "../assets/img/cmd_google.svg";
 import logo from "../assets/img/logo-big.svg";
+import { userContext } from "../context/UserContext";
 import "../css/app.css";
+import { userRedirects } from "../hooks/userHooks";
 import { signIn } from "../services/auth";
 import { CONFIGS } from "../utils/configs";
 
 export function Unlogged() {
+  const { user } = useContext(userContext);
+  const navigate = useNavigate();
+  useEffect(() => {
+    userRedirects(user, navigate);
+  }, [user, navigate]);
+
   return (
     <>
       <div className="welcome">

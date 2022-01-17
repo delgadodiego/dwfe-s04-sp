@@ -1,5 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import logo from "../assets/img/logo-small.svg";
+import text from "../assets/img/logo-text.svg";
+import { ConfirmDeletion } from "../components/ConfirmDeletion";
 import { appContext } from "../context/AppContext";
+import { userContext } from "../context/UserContext";
 import "../css/feed.css";
 import {
   useDeleteTweet,
@@ -10,15 +15,9 @@ import { SubmitForm } from "./SubmitForm";
 import { Tweet } from "./Tweet";
 
 export const Feed = () => {
-  const {
-    tweets,
-    setOkToDelete,
-    showDeleteConfirm,
-    setShowDeleteConfirm,
-    deletePressed,
-    setDeletePressed,
-  } = useContext(appContext);
-  const [postsView, setPostsView] = useState(true);
+  const { tweets, showDeleteConfirm, setShowDeleteConfirm, deletePressed } =
+    useContext(appContext);
+  const { user } = useContext(userContext);
 
   useSubscribeTweets();
   useDeleteTweet();
@@ -31,68 +30,35 @@ export const Feed = () => {
     }
   }
 
-  const handlePostsClick = () => {
-    setPostsView(true);
-  };
-  const handleFavouritesClick = () => {
-    setPostsView(false);
-  };
-
-  const ConfirmDeletion = () => {
-    return (
-      <div className="popup-container">
-        <div className="popup-bg" />
-        <div className="popup-message">
-          <h2>Confirmás eliminar este Tweet?</h2>
-          <div className="popup-buttons">
-            <button onClick={confirmDelete}>OK</button>
-            <button onClick={cancelDelete}>CANCEL</button>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  const confirmDelete = () => {
-    setShowDeleteConfirm(false);
-    setDeletePressed(false);
-    setOkToDelete(true);
-  };
-
-  const cancelDelete = () => {
-    setDeletePressed(false);
-    setShowDeleteConfirm(false);
-    setOkToDelete(false);
-  };
-
   return (
     <div>
       {showDeleteConfirm && <ConfirmDeletion />}
+
+      <div className="top-bar">
+        <Link to="/profile" className="header-item uno">
+          <div>
+            <img
+              className={"header-user " + user.color}
+              src={user.photoURL}
+              alt="user"
+            />
+          </div>
+        </Link>
+        <div className="header-item">
+          <img className="header-logo" src={logo} alt="logo" />
+        </div>
+        <div className="header-item tres">
+          <img className="header-text" src={text} alt="text" />
+        </div>
+      </div>
       <div className="feed-container">
         <SubmitForm />
-        <h1 className="username">{"CAMBIAR ESTO"}</h1>
-        <div className="tab-selector">
-          <div
-            className={`${postsView && "active"}`}
-            onClick={handlePostsClick}
-          >
-            POSTS
-          </div>
-          <div
-            className={`${!postsView && "active"}`}
-            onClick={handleFavouritesClick}
-          >
-            FAVOURITES
-          </div>
-        </div>
 
         <div className="tweets-container">
-          {postsView &&
-            tweets !== undefined &&
+          {tweets !== undefined &&
             tweets.map((item) => {
               return <Tweet key={item.id} data={item} />;
             })}
-          {!postsView && <h2>FAVOURITES</h2>}
         </div>
       </div>
     </div>

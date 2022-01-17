@@ -6,6 +6,8 @@ export const CONFIGS = {
   welcomeTitle: "WELCOME !",
   welcomeText: "the place to share all your nerd stuff",
   copyright: "© 2022 Devs_United",
+  inputUsername: "Type your username...",
+  favouriteColor: "Select your favourite color...",
 };
 
 export const AVATARS = {

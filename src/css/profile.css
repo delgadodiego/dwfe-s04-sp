@@ -1,0 +1,51 @@
+.main {
+  background-color: #150714;
+}
+
+.profile-user {
+  border: 5px solid;
+  border-radius: 60px;
+}
+
+.header-username {
+  font-family: "silkscreen";
+  color: white;
+  margin-left: 10px;
+}
+
+.username {
+  font-family: "silkscreen";
+  background: transparent;
+  border: none;
+}
+
+.tab-selector {
+  width: 450px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tab-selector div {
+  background-color: #150714;
+  color: #60265b;
+  width: 50%;
+  height: 35px;
+  font-family: "silkscreen";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-selector div.active {
+  background-color: #60265b;
+  color: #150714;
+}
+
+.back-link {
+  display: flex;
+}
+
+.back-button {
+  width: 14px;
+}

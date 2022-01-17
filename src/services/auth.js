@@ -34,8 +34,7 @@ export const handleAuthChange = async (callback) => {
 };
 
 export const addUserToFirestore = async (user) => {
-  // incluir en UserContext
-  const { uid, displayName, email } = user;
+  const { uid, displayName, email, photoURL } = user;
 
   const userExists = await getDocByID(CONFIGS.collectionUsers, uid);
   try {
@@ -45,6 +44,9 @@ export const addUserToFirestore = async (user) => {
         email: email,
         likedTweets: "||",
         uid: uid,
+        photoURL: photoURL,
+        username: "",
+        color: "",
       });
     }
 

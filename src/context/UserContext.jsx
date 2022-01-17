@@ -5,12 +5,14 @@ export const userContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [section, setSection] = useState("welcome");
+  const [username, setUsername] = useState(undefined);
+  const [selectedColor, setSelectedColor] = useState(undefined);
+  const [section, setSection] = useState("unlogged");
+  const [availableToPost, setAvailableToPost] = useState(false);
 
   useEffect(() => {
     const unsubscribe = handleAuthChange(async (user) => {
       if (user) {
-        setUser(user);
         const contextUser = await addUserToFirestore(user);
         setUser(contextUser);
       } else {
@@ -21,7 +23,20 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   return (
-    <userContext.Provider value={{ user, setUser }}>
+    <userContext.Provider
+      value={{
+        user,
+        setUser,
+        username,
+        setUsername,
+        selectedColor,
+        setSelectedColor,
+        section,
+        setSection,
+        availableToPost,
+        setAvailableToPost,
+      }}
+    >
       {children}
     </userContext.Provider>
   );

@@ -21,11 +21,11 @@ export const subscribe = (col, callback) => {
   }
 };
 
-export const postTweet = async (col, data) => {
+export const postTweet = async (col, tweetToPost) => {
   try {
-    const docReference = await addDoc(collection(database, col), data);
+    const docReference = await addDoc(collection(database, col), tweetToPost);
     await setDoc(doc(collection(database, col), docReference.id), {
-      ...data,
+      ...tweetToPost,
       id: docReference.id,
     });
   } catch (e) {
@@ -62,16 +62,15 @@ export const getDocByID = async (col, id) => {
 };
 
 export const updateUserLikedTweets = async (col, user, tweet, like) => {
-  const userRef = await getDocByID(col, user);
   let newLikedTweets = undefined;
   if (like) {
-    newLikedTweets = userRef.likedTweets + tweet + "||";
+    newLikedTweets = user.likedTweets + tweet.id + "||";
   } else {
-    newLikedTweets = userRef.likedTweets.replace(tweet + "||", "");
+    newLikedTweets = user.likedTweets.replace(tweet.id + "||", "");
   }
 
-  await setDoc(doc(collection(database, col), user), {
-    ...userRef,
+  await setDoc(doc(collection(database, col), user.uid), {
+    ...user,
     likedTweets: newLikedTweets,
   });
 
@@ -79,20 +78,26 @@ export const updateUserLikedTweets = async (col, user, tweet, like) => {
 };
 
 export const updateTweetStats = async (col, tweet, like) => {
-  const tweetRef = await getDocByID(col, tweet);
-
   let newLikes = undefined;
   if (like) {
-    newLikes = tweetRef.likes + 1;
+    newLikes = tweet.likes + 1;
   } else {
-    newLikes = tweetRef.likes - 1;
+    newLikes = tweet.likes - 1;
     if (newLikes < 0) {
       newLikes = 0;
     }
   }
 
-  await setDoc(doc(collection(database, col), tweet), {
-    ...tweetRef,
+  setDoc(doc(collection(database, col), tweet.id), {
+    ...tweet,
     likes: newLikes,
+  });
+};
+
+export const userSetup = async (col, user, username, selectedColor) => {
+  await setDoc(doc(collection(database, col), user.uid), {
+    ...user,
+    username: username,
+    color: selectedColor,
   });
 };

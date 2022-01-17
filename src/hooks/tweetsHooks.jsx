@@ -23,7 +23,7 @@ export const useSubscribeTweets = () => {
             snapshot.docs.map((item) => {
               return {
                 ...item.data(),
-                time: timestampFormatter(item.data().time),
+                timeToShow: timestampFormatter(item.data().time),
                 liked: user.likedTweets.indexOf(item.data().id) > 0,
               };
             })
@@ -59,14 +59,14 @@ export const useLikeTweet = () => {
     if (currentTweet) {
       const newLikedTweets = updateUserLikedTweets(
         CONFIGS.collectionUsers,
-        user.uid,
+        user,
         currentTweet,
         like
       );
-      setLikedTweet([undefined, null]);
       updateUser(user, setUser, newLikedTweets);
 
       updateTweetStats(CONFIGS.collectionTweets, currentTweet, like);
+      setLikedTweet([undefined, null]);
     }
   });
 };

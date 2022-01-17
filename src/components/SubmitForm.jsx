@@ -37,7 +37,8 @@ export const SubmitForm = () => {
     if (availableToPost) {
       const tweetToPost = {
         uid: user.uid,
-        name: user.name,
+        name: user.username === "" ? user.name : user.username,
+        photoURL: user.photoURL,
         text: tweetText,
         likes: 0,
         time: new Date(),
@@ -58,7 +59,6 @@ export const SubmitForm = () => {
 
   return (
     <div className="submit-form">
-      <h1>Submit Tweets</h1>
       <form onSubmit={handlePost}>
         <textarea
           id="input-area"

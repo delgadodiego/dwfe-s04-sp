@@ -1,35 +1,63 @@
+.logout-button {
+  background-color: #f50d5a;
+  width: 115px;
+  height: 35px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: "silkscreen";
+  text-decoration: inherit;
+  color: #150714;
+}
+
+.logout-button * {
+  background-color: #f50d5a;
+}
+
+a,
+.logout-text {
+  color: #250c23;
+  text-decoration: none;
+}
+
+.top-bar {
+  width: 605px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .feed-container {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
-.username {
-  font-family: "silkscreen";
-  color: greenyellow;
+.header-item {
+  width: 33%;
 }
 
-.tab-selector {
-  width: 450px;
+.uno {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  justify-content: flex-start;
 }
 
-.tab-selector div {
-  background-color: #150714;
-  color: #60265b;
-  width: 50%;
-  height: 35px;
-  font-family: "silkscreen";
+.tres {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
-.tab-selector div.active {
-  background-color: #60265b;
-  color: #150714;
+.header-user {
+  width: 30px;
+  border-radius: 40px;
+}
+
+.header-logo {
+  width: 35px;
+}
+
+.header-text {
+  width: 160px;
 }
 
 .popup-container {
