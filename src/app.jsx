@@ -1,15 +1,15 @@
-import { useEffect, useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import { Disconnected } from "./components/Disconnected";
 import { Feed } from "./components/Feed";
+import { Profile } from "./components/Profile";
 import { Unlogged } from "./components/Unlogged";
 import { Welcome } from "./components/Welcome";
-import { Profile } from "./components/Profile";
 import { userContext } from "./context/UserContext";
 import "./css/app.css";
 import { useUserSetup } from "./hooks/userHooks";
 
 function App() {
-  //   useUserLoginRedirect();
   const navigate = useNavigate();
 
   const { user } = useContext(userContext);
@@ -27,10 +27,11 @@ function App() {
   return (
     <div className="app">
       <Routes>
-        <Route path="/welcome" element={<Welcome />} />
-        <Route path="/feed" element={<Feed />} />
         <Route exact path="/" element={<Unlogged />} />
+        <Route exact path="/welcome" element={<Welcome />} />
+        <Route exact path="/feed" element={<Feed />} />
         <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/logout" element={<Disconnected />} />
       </Routes>
     </div>
   );

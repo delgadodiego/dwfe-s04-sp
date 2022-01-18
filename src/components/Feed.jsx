@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/img/logo-small.svg";
 import text from "../assets/img/logo-text.svg";
 import { ConfirmDeletion } from "../components/ConfirmDeletion";
+import { Loading } from "../components/Loading";
 import { appContext } from "../context/AppContext";
 import { userContext } from "../context/UserContext";
 import "../css/feed.css";
@@ -31,36 +32,50 @@ export const Feed = () => {
   }
 
   return (
-    <div>
+    <div className="global-container">
       {showDeleteConfirm && <ConfirmDeletion />}
 
-      <div className="top-bar">
-        <Link to="/profile" className="header-item uno">
-          <div>
-            <img
-              className={"header-user " + user.color}
-              src={user.photoURL}
-              alt="user"
-            />
+      {user === null || tweets === [] ? (
+        <Loading />
+      ) : (
+        <div className="content-container">
+          <div className="header-container">
+            <div className="header">
+              <Link to="/profile" className="header-item uno">
+                <div>
+                  <img
+                    className={"header-user profile-" + user.color}
+                    src={user.photoURL}
+                    alt="user"
+                  />
+                </div>
+              </Link>
+              <div className="header-item">
+                <img className="header-logo" src={logo} alt="logo" />
+              </div>
+              <div className="header-item tres">
+                <img className="header-text" src={text} alt="text" />
+              </div>
+            </div>
           </div>
-        </Link>
-        <div className="header-item">
-          <img className="header-logo" src={logo} alt="logo" />
-        </div>
-        <div className="header-item tres">
-          <img className="header-text" src={text} alt="text" />
-        </div>
-      </div>
-      <div className="feed-container">
-        <SubmitForm />
 
-        <div className="tweets-container">
-          {tweets !== undefined &&
-            tweets.map((item) => {
-              return <Tweet key={item.id} data={item} />;
-            })}
+          <div className="submit-container">
+            <div className="submit-content-container">
+              <img src={user.photoURL} alt="user-avatar" className="avatar" />
+              <SubmitForm />
+            </div>
+          </div>
+
+          <div className="feed-container">
+            <div className="tweets-container">
+              {tweets !== undefined &&
+                tweets.map((item) => {
+                  return <Tweet key={item.id} data={item} />;
+                })}
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

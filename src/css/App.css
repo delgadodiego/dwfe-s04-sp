@@ -104,37 +104,31 @@
 
 .red {
   background-color: #f50d5a;
-  border: 2px solid #f50d5a;
   color: #f50d5a;
 }
 
 .orange {
   background-color: #ff865c;
-  border: 2px solid #ff865c;
   color: #ff865c;
 }
 
 .yellow {
   background-color: #ffea5c;
-  border: 2px solid #ffea5c;
   color: #ffea5c;
 }
 
 .green {
   background-color: #00da76;
-  border: 2px solid #00da76;
   color: #00da76;
 }
 
 .blue {
   background-color: #0096ce;
-  border: 2px solid #0096ce;
   color: #0096ce;
 }
 
 .violet {
   background-color: #800fff;
-  border: 2px solid #800fff;
   color: #800fff;
 }
 
@@ -153,4 +147,14 @@
 
 #continue-button:enabled {
   background-color: #00da76;
+}
+
+.loading {
+  width: 450px;
+  z-index: 2;
+  background: transparent;
+}
+
+.popup-container {
+  background: transparent;
 }

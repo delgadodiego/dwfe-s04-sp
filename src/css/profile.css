@@ -1,8 +1,16 @@
-.main {
+.profile-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
   background-color: #150714;
 }
 
-.profile-user {
+.profile-main {
+  background-color: #150714;
+  padding-top: 25px;
+}
+
+.profile-image {
   border: 5px solid;
   border-radius: 60px;
 }
@@ -17,6 +25,7 @@
   font-family: "silkscreen";
   background: transparent;
   border: none;
+  padding: 7px;
 }
 
 .tab-selector {
@@ -48,4 +57,28 @@
 
 .back-button {
   width: 14px;
+}
+
+.profile-red {
+  border: 2px solid #f50d5a;
+}
+
+.profile-orange {
+  border: 2px solid #ff865c;
+}
+
+.profile-yellow {
+  border: 2px solid #ffea5c;
+}
+
+.profile-green {
+  border: 2px solid #00da76;
+}
+
+.profile-blue {
+  border: 2px solid #0096ce;
+}
+
+.profile-violet {
+  border: 2px solid #800fff;
 }

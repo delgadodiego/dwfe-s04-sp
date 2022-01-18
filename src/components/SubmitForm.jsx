@@ -58,8 +58,8 @@ export const SubmitForm = () => {
   };
 
   return (
-    <div className="submit-form">
-      <form onSubmit={handlePost}>
+    <div className="submit-form-container">
+      <form className="submit-form" onSubmit={handlePost}>
         <textarea
           id="input-area"
           className="input-area"
@@ -73,7 +73,7 @@ export const SubmitForm = () => {
         />
         <progress id="progress-bar" max="100" value={percent}></progress>
         <div className="submit-form-bottom">
-          <h5>{availableLength}</h5>
+          <h5 className="available-length">{availableLength}</h5>
           <div className="form-buttons">
             <button
               id="post-button"

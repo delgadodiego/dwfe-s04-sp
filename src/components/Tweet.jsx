@@ -33,16 +33,29 @@ export const Tweet = (props) => {
     <div className="tweet">
       {props.data.name !== null && (
         <>
-          {" "}
           <div className="tweet-avatar">
             <img className="avatar" src={props.data.photoURL} alt="" />
           </div>
           <div className="tweet-body">
             <div className="tweet-header">
               <div className="tweet-header-text">
-                <h3>{props.data.name}</h3>
+                {user.uid === props.data.uid ? (
+                  <h3
+                    className="tweet-username"
+                    style={{ background: user.color }}
+                  >
+                    {props.data.name}
+                  </h3>
+                ) : (
+                  <h3
+                    className="tweet-username"
+                    style={{ background: "white" }}
+                  >
+                    {props.data.name}
+                  </h3>
+                )}
                 <span>-</span>
-                <h4>{props.data.timeToShow}</h4>
+                <h4 className="tweet-date">{props.data.timeToShow}</h4>
               </div>
               {user.uid === props.data.uid && (
                 <img

@@ -8,7 +8,7 @@
 progress {
   width: 500px;
   height: 5px;
-  border: 1px solid #150714;
+  border: 1px solid;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -23,7 +23,14 @@ progress::-webkit-progress-value {
   background-color: greenyellow;
 }
 
+.submit-form-container {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
 .submit-form-bottom {
+  background-color: #150714;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -34,6 +41,7 @@ progress::-webkit-progress-value {
   width: 25%;
   display: flex;
   justify-content: space-between;
+  background-color: #150714;
 }
 
 #input-area {
@@ -43,8 +51,8 @@ progress::-webkit-progress-value {
   width: 500px;
   height: 113px;
   display: flex;
-  margin-bottom: -14px;
-  border: 1px solid #150714;
+  margin-bottom: -15px;
+  border: none;
   resize: none;
 }
 

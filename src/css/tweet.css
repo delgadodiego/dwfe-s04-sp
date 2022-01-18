@@ -18,6 +18,7 @@
 }
 
 .avatar {
+  height: 65px;
   width: 65px;
   margin-top: 6px;
   border-radius: 35px;
@@ -31,10 +32,25 @@
   display: flex;
   justify-content: space-between;
 }
+
 .tweet-header-text {
   display: flex;
   align-items: center;
 }
+
+.tweet-username {
+  font-family: "Silkscreen";
+  color: #2e132c;
+  font-weight: normal;
+  background-color: aqua;
+}
+
+.tweet-date {
+  font-family: "Fira Code";
+  font-size: 16px;
+  font-weight: 450;
+}
+
 .trashcan {
   width: 13px;
 }
@@ -48,6 +64,7 @@
   display: flex;
   text-align: justify;
   word-break: break-word;
+  font-family: "Fira Code";
 }
 
 .tweet-likes {
