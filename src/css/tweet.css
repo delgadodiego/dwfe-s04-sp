@@ -42,7 +42,10 @@
   font-family: "Silkscreen";
   color: #2e132c;
   font-weight: normal;
-  background-color: aqua;
+}
+
+.others {
+  background-color: white;
 }
 
 .tweet-date {

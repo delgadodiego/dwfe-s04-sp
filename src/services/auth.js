@@ -36,10 +36,11 @@ export const handleAuthChange = async (callback) => {
 export const addUserToFirestore = async (user) => {
   const { uid, displayName, email, photoURL } = user;
 
-  const userExists = await getDocByID(CONFIGS.collectionUsers, uid);
+  let userExists = await getDocByID(CONFIGS.collectionUsers, uid);
+
   try {
     if (!userExists) {
-      await setDoc(doc(collection(database, CONFIGS.collectionUsers), uid), {
+      userExists = {
         name: displayName,
         email: email,
         likedTweets: "||",
@@ -47,9 +48,13 @@ export const addUserToFirestore = async (user) => {
         photoURL: photoURL,
         username: "",
         color: "",
-      });
-    }
+      };
 
+      await setDoc(
+        doc(collection(database, CONFIGS.collectionUsers), uid),
+        userExists
+      );
+    }
     return userExists;
   } catch (e) {
     console.error("Exception at addUserToFirestore", e);

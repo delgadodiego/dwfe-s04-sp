@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { appContext } from "../context/AppContext";
 
 export const ConfirmDeletion = (props) => {
-  console.info("PROPS", props);
   const { setOkToDelete, setShowDeleteConfirm, setDeletePressed } =
     useContext(appContext);
 

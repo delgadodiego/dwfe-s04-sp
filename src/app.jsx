@@ -17,8 +17,6 @@ function App() {
   useEffect(() => {
     if (user === null || user === undefined) {
       navigate("/");
-    } else {
-      console.info("USER4", user);
     }
   }, [user, navigate]);
 

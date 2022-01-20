@@ -5,6 +5,7 @@ import trashcan from "../assets/img/trashcan.svg";
 import { appContext } from "../context/AppContext";
 import { userContext } from "../context/UserContext";
 import "../css/tweet.css";
+import "../css/app.css";
 
 export const Tweet = (props) => {
   const {
@@ -40,19 +41,11 @@ export const Tweet = (props) => {
             <div className="tweet-header">
               <div className="tweet-header-text">
                 {user.uid === props.data.uid ? (
-                  <h3
-                    className="tweet-username"
-                    style={{ background: user.color }}
-                  >
+                  <h3 className={"tweet-username " + user.color}>
                     {props.data.name}
                   </h3>
                 ) : (
-                  <h3
-                    className="tweet-username"
-                    style={{ background: "white" }}
-                  >
-                    {props.data.name}
-                  </h3>
+                  <h3 className="tweet-username others">{props.data.name}</h3>
                 )}
                 <span>-</span>
                 <h4 className="tweet-date">{props.data.timeToShow}</h4>

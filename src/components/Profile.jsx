@@ -41,9 +41,7 @@ export const Profile = () => {
   };
 
   useEffect(() => {
-    console.info("usuario use effect");
     if (user !== null) {
-      console.info("usuario OK");
       if (activeTab === "posts") {
         const posts = tweets.filter((item) => {
           return item.uid === user.uid;
@@ -57,8 +55,6 @@ export const Profile = () => {
         setTweetsFavs(favs);
         setTweetsPosts(undefined);
       }
-    } else {
-      console.info("usuario null");
     }
   }, [activeTab, tweets, user.likedTweets, user.uid, user]);
 
