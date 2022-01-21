@@ -9,7 +9,3 @@ export const CONFIGS = {
   inputUsername: "Type your username...",
   favouriteColor: "Select your favourite color...",
 };
-
-export const AVATARS = {
-  avatar01: "../assets/avatars/01.svg",
-};

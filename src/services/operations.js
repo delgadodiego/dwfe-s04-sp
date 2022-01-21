@@ -89,7 +89,12 @@ export const updateTweetStats = async (col, tweet, like) => {
   }
 
   setDoc(doc(collection(database, col), tweet.id), {
-    ...tweet,
+    id: tweet.id,
+    name: tweet.name,
+    photoURL: tweet.photoURL,
+    text: tweet.text,
+    time: tweet.time,
+    uid: tweet.uid,
     likes: newLikes,
   });
 };
