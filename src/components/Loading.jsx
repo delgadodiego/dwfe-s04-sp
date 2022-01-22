@@ -1,3 +1,4 @@
+import React from "react";
 import loading from "../assets/img/loading.svg";
 import "../css/app.css";
 import "../css/feed.css";

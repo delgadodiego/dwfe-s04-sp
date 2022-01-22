@@ -1,8 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import back from "../assets/img/back.svg";
 import logoutIcon from "../assets/img/logout-icon.svg";
 import { ConfirmDeletion } from "../components/ConfirmDeletion";
+import { Loading } from "../components/Loading";
 import { appContext } from "../context/AppContext";
 import { userContext } from "../context/UserContext";
 import "../css/app.css";
@@ -15,8 +16,6 @@ import {
 } from "../hooks/tweetsHooks";
 import { signOut } from "../services/auth";
 import { Tweet } from "./Tweet";
-
-import { Loading } from "../components/Loading";
 
 export const Profile = () => {
   const [activeTab, setActiveTab] = useState("posts");

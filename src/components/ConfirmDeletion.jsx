@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { appContext } from "../context/AppContext";
 
 export const ConfirmDeletion = (props) => {
@@ -16,6 +16,7 @@ export const ConfirmDeletion = (props) => {
     setShowDeleteConfirm(false);
     setOkToDelete(false);
   };
+
   return (
     <div className="popup-container">
       <div className="popup-bg" />
