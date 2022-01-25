@@ -1,6 +1,33 @@
+import { useState, useEffect } from "react";
+
 export const timestampFormatter = (unixTimestamp) => {
   const timeInMillis = unixTimestamp * 1000;
   const date = new Date(timeInMillis);
   const month = date.toLocaleString("es-en", { month: "short" }) + ".";
   return date.getDate() + " " + month;
+};
+
+export const useWindowDimensions = () => {
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
+
+  function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height,
+    };
+  }
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return windowDimensions;
 };

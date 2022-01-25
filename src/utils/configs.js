@@ -3,7 +3,7 @@ export const CONFIGS = {
   collectionUsers: "users",
   maxLength: 200,
   inputPlaceholder: "What's happening?",
-  welcomeTitle: "WELCOME !",
+  welcomeTitle: "WELCOME!",
   welcomeText: "the place to share all your nerd stuff",
   copyright: "© 2022 Devs_United",
   inputUsername: "Type your username...",

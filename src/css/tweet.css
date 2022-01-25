@@ -1,3 +1,4 @@
+/* TWEET STYLES - DEFAULT */
 .tweets-container {
   width: 450px;
 }
@@ -83,4 +84,20 @@
 
 .heart {
   margin: 10px 10px 10px 0px;
+}
+
+/* TWEET STYLES - 1080 */
+@media only screen and (max-width: 1080px) {
+  .tweets-container {
+    width: 100%;
+  }
+
+  .avatar {
+    width: 35px;
+    height: 35px;
+  }
+
+  .tweet-body {
+    width: 75%;
+  }
 }

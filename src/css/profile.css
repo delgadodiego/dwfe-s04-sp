@@ -1,3 +1,4 @@
+/* PROFILE STYLES - DEFAULT */
 .profile-container {
   display: flex;
   justify-content: center;
@@ -82,4 +83,12 @@
 
 .profile-violet {
   border: 2px solid #800fff;
+}
+
+/* PROFILE STYLES - 1080 */
+@media only screen and (max-width: 1080px) {
+  .tab-selector,
+  .profile-main {
+    width: 100%;
+  }
 }

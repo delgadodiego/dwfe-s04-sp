@@ -12,6 +12,7 @@ import { CONFIGS } from "../utils/configs";
 export function Unlogged() {
   const { user } = useContext(userContext);
   const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
   useEffect(() => {
     userRedirects(user, navigate);

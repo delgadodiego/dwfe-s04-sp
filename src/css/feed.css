@@ -1,3 +1,5 @@
+/* FEED STYLES - DEFAULT */
+
 /* FEED GLOBAL*/
 .global-container {
   display: flex;
@@ -153,4 +155,12 @@ a,
   width: 100px;
   margin-right: 10px;
   margin-left: 10px;
+}
+
+/* FEED STYLES - 1080 */
+@media only screen and (max-width: 1080px) {
+  .submit-content-container {
+    width: 100%;
+    justify-content: center;
+  }
 }

@@ -1,3 +1,5 @@
+/* FORMS STYLES - DEFAULT */
+
 /* SUBMIT FORM */
 .tweet-form {
   display: flex;
@@ -78,4 +80,24 @@ button:focus {
 #post-button:enabled {
   background-color: greenyellow;
   color: #150714;
+}
+
+/* FORMS STYLES - 1080 */
+@media only screen and (max-width: 1080px) {
+  .submit-form-container {
+    width: 80%;
+    background-color: cyan;
+  }
+
+  #input-area {
+    width: 100%;
+  }
+
+  .form-buttons {
+    width: 37%;
+  }
+
+  progress {
+    width: 331px;
+  }
 }

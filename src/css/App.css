@@ -1,3 +1,4 @@
+/* APP STYLES - DEFAULT */
 @font-face {
   font-family: "silkscreen";
   src: url("../assets/fonts/slkscreb.ttf");
@@ -157,4 +158,65 @@
 
 .popup-container {
   background: transparent;
+  z-index: 2;
+}
+
+/* APP STYLES - 1300 */
+@media only screen and (min-width: 901px) and (max-width: 1300px) {
+  .welcome {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .welcome-logo-container,
+  .welcome-text-container {
+    width: 100%;
+    margin-top: 100px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .welcome-text-container {
+    height: 270px;
+  }
+
+  .welcome-text {
+    font-size: 14px;
+  }
+
+  .copyright {
+    bottom: 0;
+    font-size: 14px;
+  }
+}
+
+/* APP STYLES - 1080 */
+@media only screen and (max-width: 1080px) {
+  .welcome {
+    width: 100%;
+    flex-direction: column;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .welcome-logo-container,
+  .welcome-text-container {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  .welcome-text {
+    font-size: 14px;
+  }
+
+  .copyright {
+    position: absolute;
+    bottom: 0;
+    font-size: 14px;
+    z-index: 0;
+  }
 }
